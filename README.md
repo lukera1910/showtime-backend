@@ -32,7 +32,7 @@ psql --version
 
 ---
 
-# 🧩 Instalação e Configuração
+## 🧩 Instalação e Configuração
 1. Clone o repositório
 ```bash
 git clone https://github.com/lukera1910/showtime-backend.git
@@ -62,7 +62,7 @@ yarn install
 
 ---
 
-# ▶️ Executando o projeto
+## ▶️ Executando o projeto
 Ambiente de desenvolvimento
 ```bash
 npm run dev
@@ -72,7 +72,7 @@ Servidor iniciará em:
 
 ---
 
-# 📁 Estrutura de Pastas
+## 📁 Estrutura de Pastas
 ```bash
 showtime-backend/
 ├── src/
