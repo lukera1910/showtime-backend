@@ -89,3 +89,20 @@ showtime-backend/
 ├── package.json
 └── tsconfig.json
 ```
+
+---
+
+## 🤝 Colaboração
+1. Crie uma nova branch para sua feature:
+```bash
+git checkout -b feat/nome-da-feature
+```
+
+2. Após as alterações
+```bash
+git add .
+git commit -m "feat: descrição breve da alteração"
+git push origin feat/nome-da-feature
+```
+
+3. Abra um Pull Request e solicite revisão.
