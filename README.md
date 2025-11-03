@@ -8,7 +8,7 @@ Este serviço fornece os endpoints consumidos pelo frontend e implementa as regr
 ## 🚀 Tecnologias Utilizadas
 - [Node.js](https://nodejs.org/) — Ambiente de execução JavaScript  
 - [Express](https://expressjs.com/) — Framework web para criação de APIs  
-- [JavaScript]([https://www.javascript.com/]) — Tipagem estática (se aplicável)  
+- [JavaScript](https://www.javascript.com/) — Tipagem estática (se aplicável)  
 - [Sequelize](https://sequelize.org/) — ORM para banco de dados  
 - [PostgreSQL](https://www.postgresql.org/) — Banco de dados principal  
 - [JWT](https://jwt.io/) — Autenticação e controle de acesso  
