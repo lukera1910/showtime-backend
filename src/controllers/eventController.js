@@ -2,25 +2,92 @@ import { pool } from "../config/db.js";
 
 export const getAllEvents = async (req, res) => {
     try {
-        const { name, date } = req.query;
+        const { 
+          name,
+          artist,
+          location,
+          dateFrom,
+          dateTo,
+          status, // cancelado / ativo
+          orderBy = 'date',
+          orderDir = 'asc',
+          page = 1,
+          limit = 20,
+        } = req.query;
 
         let query = "SELECT * FROM events WHERE 1=1";
+        let countQuery = 'SELECT COUNT(*) FROM events WHERE 1=1';
         const params = [];
 
         if (name) {
-            params.push(`%${name}`);
+            params.push(`%${name}%`);
             query += ` AND name ILIKE $${params.length}`;
+            countQuery += ` AND name ILIKE $${params.length}`;
         }
 
-        if (date) {
-            params.push(date);
-            query += ` AND date = $${params.length}`;
+        if (artist) {
+            params.push(`%${artist}%`);
+            query += ` AND artist ILIKE $${params.length}`;
+            countQuery += ` AND artist ILIKE $${params.length}`;
         }
 
-        query += " ORDER BY date ASC";
+        if (location) {
+          params.push(`%${location}%`);
+          query += ` AND location ILIKE $${params.length}`;
+          countQuery += ` AND location ILIKE $${params.length}`;
+        }
 
-        const result = await pool.query(query, params);
-        res.json(result.rows);
+        if (dateFrom) {
+          params.push(dateFrom);
+          query += ` AND date >= $${params.length}`;
+          countQuery += ` AND date >= $${params.length}`;
+        }
+
+        if (dateTo) {
+          params.push(dateTo);
+          query += ` AND date <= $${params.length}`;
+          countQuery += ` AND date <= $${params.length}`;
+        }
+
+        if (status) {
+          // só se você criar coluna status na tabela
+          params.push(status);
+          query += ` AND status = $${params.length}`;
+          countQuery += ` AND status = $${params.length}`;
+        }
+
+        // ordenação
+        const validOrderBy = ['date', 'name', 'artist', 'location', 'created_at'];
+        const validOrderDir = ['asc', 'desc'];
+
+        const orderColumn = validOrderBy.includes(orderBy) ? orderBy : 'date';
+        const orderDirection = validOrderDir.includes(orderDir.toLowerCase())
+          ? orderDir.toUpperCase()
+          : 'ASC';
+
+        query += ` ORDER BY ${orderColumn} ${orderDirection}`;
+
+        // paginação
+        const pageNumber = Number(page) || 1;
+        const limitNumber = Number(limit) || 20;
+        const offset = (pageNumber - 1) * limitNumber;
+
+        query += ` LIMIT ${limitNumber} OFFSET ${offset}`;
+
+        // executa as duas queries
+        const [dataResult, countResult] = await Promise.all([
+          pool.query(query, params),
+          pool.query(countQuery, params),
+        ]);
+
+        const total = Number(countResult.rows[0].count);
+
+        res.json({
+          total,
+          page: pageNumber,
+          limit: limitNumber,
+          data: dataResult.rows,
+        });
     } catch (error) {
         console.error('Erro ao buscar eventos:', error);
         res.status(500).json({ message: 'Erro interno do servidor' });
