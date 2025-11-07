@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Rock in Curitiba",
+    "location": "Curitiba",
+    "date": "2025-11-10",
+    "artist": "Linkin Park"
+  },
+  {
+    "name": "Jazz Sunset",
+    "location": "São Paulo",
+    "date": "2025-11-15",
+    "artist": "Miles Experience"
+  },
+  {
+    "name": "Festival Indie",
+    "location": "Belo Horizonte",
+    "date": "2025-11-22",
+    "artist": "Scalene"
+  },
+  {
+    "name": "Noite do Blues",
+    "location": "Porto Alegre",
+    "date": "2025-11-18",
+    "artist": "Celso Blues Boy"
+  },
+  {
+    "name": "Acústico na Serra",
+    "location": "Gramado",
+    "date": "2025-12-05",
+    "artist": "AnaVitória"
+  },
+  {
+    "name": "Summer Beats",
+    "location": "Rio de Janeiro",
+    "date": "2025-12-12",
+    "artist": "Planet Hemp"
+  },
+  {
+    "name": "Orquestra Filarmônica Especial",
+    "location": "Curitiba",
+    "date": "2025-11-30",
+    "artist": "Orquestra Sinfônica do Paraná"
+  },
+  {
+    "name": "Festival Alternativo",
+    "location": "Recife",
+    "date": "2025-12-18",
+    "artist": "Pitty"
+  },
+  {
+    "name": "Natal Musical",
+    "location": "Florianópolis",
+    "date": "2025-12-23",
+    "artist": "Roupa Nova"
+  },
+  {
+    "name": "Ano Novo Rock",
+    "location": "Fortaleza",
+    "date": "2025-12-31",
+    "artist": "Titãs"
+  }
+]
